@@ -1,5 +1,6 @@
 from flask import Flask, request, redirect
 from sqlalchemy import create_engine, select
+from waitress import serve
 import time
 
 app = Flask(__name__)
@@ -34,4 +35,5 @@ def hello_world():
 
 
 if __name__ == '__main__':
-    app.run()
+    # TODO: setup supervisord to catch the microservice when it stops running
+    serve(app, listen='0.0.0.0:8081')
